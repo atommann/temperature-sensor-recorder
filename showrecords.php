@@ -20,6 +20,7 @@
 	} else {
         echo "<a href=\"{$url}?refresh\">[start auto-refresh]</a>\n";
 	}
+    echo "<a href=/beertemp.php>[back]</a>";
     echo "<br>\n";
 
 
