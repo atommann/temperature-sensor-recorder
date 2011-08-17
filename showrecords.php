@@ -7,7 +7,7 @@
     echo "<html>\n";
     echo "<head>\n";
     if ($refresh == 1) {
-       echo "<meta http-equiv=\"refresh\" content=\"5\">\n"
+       echo "<meta http-equiv=\"refresh\" content=\"5\">\n";
     }
 
     echo "</head>\n";
