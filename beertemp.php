@@ -77,4 +77,6 @@
     }
 
     echo "<hr />";
+
+	echo "<img src=/images/ds18b20.jpg  alt=ds18b20 />";
 ?>
