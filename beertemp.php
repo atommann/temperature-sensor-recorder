@@ -1,5 +1,8 @@
 <?php
     if (isset($_GET['sensor1']) && isset($_GET['sensor2'])) {
+        # set time zone
+        date_default_timezone_set('PRC');
+
         # get timestamp
         $date = date('Y-m-d H:i:s');
         
@@ -56,8 +59,11 @@
                 $char = fgetc($fp);
             }
 
+            echo "<pre> <a href=/beertemp.php>[refresh]</a> <a href=/showrecords.php>[history]</a></pre>\n";
+
+
             echo "<pre>";
-            echo "Last Temperature Record\n";
+            echo "Lastest Temperature Record in &deg;C\n";
             echo "Time                  Beer T  Ice T\n";
             echo $line;
             echo "</pre>";
@@ -71,24 +77,4 @@
     }
 
     echo "<hr />";
-
-    # output a history of temperatures
-    echo "<pre>";
-    echo "Temperature History\n";
-    echo "Time                  Beer T  Ice T\n";
-
-    # open file "history.txt" in 'rb' mode
-    $fp = fopen("history.txt", 'rb');
-
-    if ($fp) {
-        while (!feof($fp)) {
-            # read a line
-            $record = fgets($fp, 999);
-            echo $record;
-        }
-        # close file
-        fclose($fp);
-    }
-
-    echo "</pre>";
 ?>
