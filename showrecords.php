@@ -1,4 +1,6 @@
 <?php
+    echo "<html>\n"
+	echo "<body>\n"
     echo "<pre> <a href=/showrecords.php>[refresh history]</a> <a href=/beertemp.php>[back]</a></pre>\n";
 
     # output a history of temperatures
@@ -20,4 +22,6 @@
     }
 
     echo "</pre>";
+    echo "</body>";
+    echo "</html>";
 ?>
