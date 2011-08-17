@@ -1,17 +1,17 @@
 <?php
-	$refresh = 0;
-	if (isset($_GET['refresh'])) {
-		$refresh = 1;
-	}
+    $refresh = 0;
+    if (isset($_GET['refresh'])) {
+       $refresh = 1;
+    }
 
     echo "<html>\n");
-	echo "<head>\n");
-	if ($refresh == 1) {
-		echo "<meta http-equiv=\"refresh\" content=\"5\">\n"
-	}
+    echo "<head>\n");
+    if ($refresh == 1) {
+       echo "<meta http-equiv=\"refresh\" content=\"5\">\n"
+    }
 
-	echo "</head>\n";
-	echo "<body>\n";
+    echo "</head>\n";
+    echo "<body>\n";
     echo "<pre> <a href=/showrecords.php>[refresh history]</a> <a href=/beertemp.php>[back]</a></pre>\n";
 
     # output a history of temperatures
