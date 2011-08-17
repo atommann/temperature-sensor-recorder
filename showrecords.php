@@ -10,9 +10,18 @@
        echo "<meta http-equiv=\"refresh\" content=\"5\">\n";
     }
 
+    $url = $_SERVER['REQUEST_URI'];
     echo "</head>\n";
     echo "<body>\n";
-    echo "<pre> <a href=/showrecords.php>[refresh history]</a> <a href=/beertemp.php>[back]</a></pre>\n";
+    echo "<a href=\"{$url}\">[refresh]</a> ";
+	if ($refresh == 1) {
+        $url = preg_replace('/\?refresh$/', '', $url);
+        echo "<a href=\"{$url}\">[stop auto-refresh]</a> ";
+	} else {
+        echo "<a href=\"{$url}?refresh\">[start auto-refresh]</a>\n";
+	}
+    echo "<br>\n";
+
 
     # output a history of temperatures
     echo "<pre>";
