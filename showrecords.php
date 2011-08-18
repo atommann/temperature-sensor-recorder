@@ -1,16 +1,33 @@
 <?php
-    function show_buttons($refresh)
+    function makeurl($url, $refresh, $newest)
     {
-        $url = $_SERVER['REQUEST_URI'];
+		$args = array();
+		if ($refresh) {
+			$args["refresh"] = "";
+		}
+		if ($newest) {
+            $args["newest"] = "";
+		}
+		$query = http_build_query($args);
+		$return = $url . ($query != "" ? ("?" . $query) : "");
+		if ($newest) {
+            $return = $return . "#newest";
+		}
 
-        echo "<a href=\"{$url}\">[refresh]</a> ";
-        if ($refresh == 1) {
-            $url = preg_replace('/\?refresh$/', '', $url);
-            echo "<a href=\"{$url}\">[stop auto-refresh]</a> ";
+		return $return;
+	}
+
+    function show_buttons($url, $refresh, $newest)
+    {
+        echo "<a href=\"" . makeurl($url, $refresh, $newest) . "\">[refresh]</a> ";
+        if ($refresh) {
+            echo "<a href=\"" . makeurl($url, FALSE, $newest) . "\">[stop auto-refresh]</a> ";
         } else {
-            echo "<a href=\"{$url}?refresh\">[start auto-refresh]</a>\n";
+            echo "<a href=\"" . makeurl($url, TRUE, $newest) . "\">[start auto-refresh]</a> ";
         }
-        echo "<a href=/beertemp.php>[back]</a>";
+        echo "<a href=\"javascript: history.go(-1)\">[back]</a> ";
+        echo "<a href=\"" . makeurl($url, $refresh, FALSE) . "\">[oldest]</a> ";
+        echo "<a href=\"" . makeurl($url, $refresh, TRUE) . "\">[newest]</a>";
         echo "<br>\n";
     }
 
@@ -33,28 +50,30 @@
             # close file
             fclose($fp);
         }
+        echo "</pre>\n";
         echo "<br>\n";
     }
 
-    if (isset($_GET['refresh'])) {
-       $refresh = 1;
-    }
+    $url = $_SERVER['SCRIPT_NAME'];
+
+	$refresh = isset($_GET['refresh']);
+	$newest = isset($_GET['newest']);
 
     echo "<html>\n";
     echo "<head>\n";
     if ($refresh == 1) {
-       echo "<meta http-equiv=\"refresh\" content=\"5\">\n";
+       echo "<meta http-equiv=\"refresh\" content=\"30\">\n";
     }
 
+    echo "<title>Brewing@Chaihuo: Beer temperatures</title>\n";
     echo "</head>\n";
     echo "<body>\n";
 
-    show_buttons($refresh);
+    show_buttons($url, $refresh, $newest);
     show_history();
-    show_buttons($refresh);
+    show_buttons($url, $refresh, $newest);
 
-    echo "<a name=\"latest\">\n";
-    echo "</pre>\n";
+    echo "<a name=\"newest\">\n";
     echo "</body>\n";
     echo "</html>\n";
 ?>
