@@ -27,7 +27,7 @@
         $output_str = $date . "\t" . $temp1 . "\t" . $temp2 . "\n";
         
         # open file "history.txt" in 'ab' mode
-        $fp = fopen("history.txt", 'ab');
+        $fp = fopen("make/beer/history.txt", 'ab');
         
         if ($fp) {
             # write output string to file
@@ -38,7 +38,7 @@
     }
     elseif (!isset($_GET['sensor1']) && !isset($_GET['sensor2'])) {
         # display last record instead
-        $fp = fopen("history.txt", 'rb');
+        $fp = fopen("make/beer/history.txt", 'rb');
 
         if ($fp) {
             $line = '';
@@ -59,7 +59,7 @@
                 $char = fgetc($fp);
             }
 
-            echo "<pre> <a href=/beertemp.php>[refresh]</a> <a href=/showrecords.php>[history]</a></pre>\n";
+            echo "<pre><a href=/beertemp.php>[refresh]</a></pre>\n";
 
 
             echo "<pre>";
@@ -77,6 +77,4 @@
     }
 
     echo "<hr />";
-
-	echo "<img src=/images/ds18b20.jpg  alt=ds18b20 />";
 ?>
