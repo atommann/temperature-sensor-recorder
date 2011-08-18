@@ -17,12 +17,6 @@
             echo $e->getMessage() . "<br />";
         }
 
-        echo "<pre>"; 
-        echo $date . "\n\n";
-        echo "Beer side temperature: $temp1 &deg;C\n\n";
-        echo "Ice side temperature: $temp2 &deg;C\n\n";
-        echo "</pre>";
-
         # format the output string
         $output_str = $date . "\t" . $temp1 . "\t" . $temp2 . "\n";
         
