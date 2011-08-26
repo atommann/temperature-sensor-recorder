@@ -38,15 +38,13 @@
         echo "Temperature History\n";
         echo "Time                  Beer T  Ice T\n";
 
-        # open file "history.txt" in 'rb' mode
-        # $fp = fopen("history.txt", 'rb');
-        $fp = file('history.txt');
+        # Pull the contents of the history file into an array
+        $file_contents = file('history.txt');
 
-        if ($fp) {
-            for($i=count($fp)-1;$i >0;$i--) 
-                echo $fp[$i];
-            # close file
-            fclose($fp);
+        # Display the contents of the array in reverse order
+        if ($file_contents) {
+            for ($i = count($file_contents) - 1; $i >= 0; $i--) 
+                echo htmlentities($file_contents[$i]);
         }
 
         echo "</pre>\n";
