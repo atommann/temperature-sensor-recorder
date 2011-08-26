@@ -39,17 +39,16 @@
         echo "Time                  Beer T  Ice T\n";
 
         # open file "history.txt" in 'rb' mode
-        $fp = fopen("history.txt", 'rb');
-    
+        # $fp = fopen("history.txt", 'rb');
+		$fp = file('history.txt');
+
         if ($fp) {
-            while (!feof($fp)) {
-                # read a line
-                $record = fgets($fp, 999);
-                echo $record;
-            }
+			for($i=count($fp)-1;$i >0;$i--) 
+				echo $fp[$i];
             # close file
             fclose($fp);
-        }
+		}
+
         echo "</pre>\n";
         echo "<br>\n";
     }
