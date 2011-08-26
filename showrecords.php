@@ -1,21 +1,21 @@
 <?php
     function makeurl($url, $refresh, $newest)
     {
-		$args = array();
-		if ($refresh) {
-			$args["refresh"] = "";
-		}
-		if ($newest) {
+        $args = array();
+        if ($refresh) {
+            $args["refresh"] = "";
+        }
+        if ($newest) {
             $args["newest"] = "";
-		}
-		$query = http_build_query($args);
-		$return = $url . ($query != "" ? ("?" . $query) : "");
-		if ($newest) {
+        }
+        $query = http_build_query($args);
+        $return = $url . ($query != "" ? ("?" . $query) : "");
+        if ($newest) {
             $return = $return . "#newest";
-		}
+        }
 
-		return $return;
-	}
+        return $return;
+    }
 
     function show_buttons($url, $refresh, $newest)
     {
@@ -40,14 +40,14 @@
 
         # open file "history.txt" in 'rb' mode
         # $fp = fopen("history.txt", 'rb');
-		$fp = file('history.txt');
+        $fp = file('history.txt');
 
         if ($fp) {
-			for($i=count($fp)-1;$i >0;$i--) 
-				echo $fp[$i];
+            for($i=count($fp)-1;$i >0;$i--) 
+                echo $fp[$i];
             # close file
             fclose($fp);
-		}
+        }
 
         echo "</pre>\n";
         echo "<br>\n";
@@ -55,8 +55,8 @@
 
     $url = $_SERVER['SCRIPT_NAME'];
 
-	$refresh = isset($_GET['refresh']);
-	$newest = isset($_GET['newest']);
+    $refresh = isset($_GET['refresh']);
+    $newest = isset($_GET['newest']);
 
     echo "<html>\n";
     echo "<head>\n";
